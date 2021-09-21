@@ -1,0 +1,107 @@
+<nb-card size="giant">
+  <nb-card-header>Enter Pegawai</nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input nbInput fullWidth fieldSize="small" type="text" placeholder="Kode Pegawai" #kode_pegawai>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input nbInput fullWidth fieldSize="small" type="text" placeholder="Nama Pegawai" #nama_pegawai>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input nbInput fullWidth fieldSize="small" type="text" placeholder="Contact Person" #contact_person>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <textarea nbInput fullWidth fieldSize="small" type="text" placeholder="Alamat" #alamat></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input nbInput fullWidth fieldSize="small" type="text" placeholder="Kota" #kota>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input nbInput fullWidth fieldSize="small" type="number" placeholder="Kode Pos" #kode_pos>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input nbInput fullWidth fieldSize="small" type="email" placeholder="Email" #email>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input nbInput fullWidth fieldSize="small" type="text" placeholder="Telp" #telp>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input nbInput fullWidth fieldSize="small" type="text" placeholder="Fax" #fax>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input #jenis_penggajian nbInput fullWidth type="text"
+            placeholder="Jenis Penggajian" [ngModel]="valueJenisPenggajian" (ngModelChange)="onModelChangeJenisPenggajian($event)"
+            [nbAutocomplete]="autoJenisPenggajian" />
+          <nb-autocomplete #autoJenisPenggajian>
+            <nb-option *ngFor="let optionsJenisPenggajian of filteredNgModelOptionsJenisPenggajian$ | async" [value]="optionsJenisPenggajian">
+              {{ optionsJenisPenggajian }}
+            </nb-option>
+          </nb-autocomplete>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <textarea nbInput fullWidth fieldSize="small" type="text" placeholder="Jabatan" #jabatan></textarea>
+        </div>
+      </div>
+    </div>
+
+  </nb-card-body>
+  <nb-card-footer>
+    <button class="cancel" nbButton status="danger" (click)="cancel()">Cancel</button>
+    <button nbButton status="success"
+    (click)="submit(
+    kode_pegawai.value,
+    nama_pegawai.value,
+    contact_person.value,
+    alamat.value,
+    kota.value,
+    kode_pos.value,
+    email.value,
+    telp.value,
+    fax.value,
+    jabatan.value,
+    jenis_penggajian.value
+    )">Submit</button>
+  </nb-card-footer>
+</nb-card>

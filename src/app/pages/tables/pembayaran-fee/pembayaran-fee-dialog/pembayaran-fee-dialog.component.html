@@ -1,0 +1,96 @@
+<nb-card size="giant">
+  <nb-card-header>Enter Saldo Awal Piutang</nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input #tanggal nbInput fullWidth fieldSize="small" [nbDatepicker]="tanggalDate" placeholder="Tgl Transaksi">
+          <nb-datepicker #tanggalDate></nb-datepicker>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input #noTransaksi nbInput fullWidth fieldSize="small" type="text" placeholder="No.Transaksi">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input #kodeCustomer nbInput fullWidth type="text" fieldSize="small" placeholder="Kode Customer"
+            [ngModel]="valueKodeCustomer" (ngModelChange)="onModelChangeKodeCustomer($event)"
+            [nbAutocomplete]="autoKodeCustomer" />
+          <nb-autocomplete #autoKodeCustomer>
+            <nb-option *ngFor="let optionsKodeCustomer of filteredNgModelOptionsKodeCustomer$ | async"
+              [value]="optionsKodeCustomer">
+              {{ optionsKodeCustomer }}
+            </nb-option>
+          </nb-autocomplete>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input #namaCustomer nbInput fullWidth fieldSize="small" type="text" placeholder="Nama Customer">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input #dariTanggal nbInput fullWidth fieldSize="small" [nbDatepicker]="dariTanggalDate" placeholder="Dari Tgl">
+          <nb-datepicker #dariTanggalDate></nb-datepicker>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input #sampaiDengan nbInput fullWidth fieldSize="small" [nbDatepicker]="sampaiDenganDate" placeholder="S/D">
+          <nb-datepicker #sampaiDenganDate></nb-datepicker>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input #grandTotal nbInput fullWidth fieldSize="small" [nbDatepicker]="saldoAwalDate" type="number" placeholder="Grand Total">
+          <nb-datepicker #saldoAwalDate></nb-datepicker>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-5">
+        <div class="form-group">
+          <input #feePercent nbInput fullWidth fieldSize="small" type="number" placeholder="Fee (%)">
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="form-group">
+          <input #feeRp nbInput fullWidth fieldSize="small" type="number" placeholder="Fee (Rp)">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input #penerima nbInput fullWidth fieldSize="small" type="text" placeholder="Penerima">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <textarea #keterangan nbInput fullWidth fieldSize="small" type="text" placeholder="Keterangan"></textarea>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <button class="cancel" nbButton status="danger" (click)="cancel()">Cancel</button>
+    <button nbButton status="success" (click)="submit(tanggal, noTransaksi, kodeCustomer, namaCustomer, dariTanggal, sampaiDengan, grandTotal, feePercent, feeRp, penerima, keterangan)">Submit</button>
+  </nb-card-footer>
+</nb-card>

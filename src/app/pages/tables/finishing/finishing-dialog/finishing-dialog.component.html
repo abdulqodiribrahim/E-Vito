@@ -1,0 +1,90 @@
+<nb-card size="giant">
+  <nb-card-header>Enter Finishing
+    <div class="box">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="col-lg-12">
+              <input #noTransaksi nbInput fullWidth fieldSize="15px" class="tinyInput" type="text"
+                placeholder="No.Transaksi">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input #tanggalTransaksi nbInput fullWidth fieldSize="15px" class="tinyInput" [nbDatepicker]="tanggalTransaksiDate"
+                placeholder="Tanggal Transaksi">
+              <nb-datepicker #tanggalTransaksiDate></nb-datepicker>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="col-lg-5">
+              <input #kodeGudang nbInput fullWidth type="text" fieldSize="small" placeholder="Kode Gudang"
+                [ngModel]="valueKodeGudang" (ngModelChange)="onModelChangeKodeGudang($event)"
+                [nbAutocomplete]="autoKodeGudang" />
+              <nb-autocomplete #autoKodeGudang>
+                <nb-option *ngFor="let optionsKodeGudang of filteredNgModelOptionsKodeGudang$ | async"
+                  [value]="optionsKodeGudang">
+                  {{ optionsKodeGudang }}
+                </nb-option>
+              </nb-autocomplete>
+            </div>
+            <div class="col-lg-7">
+              <input #namaGudang nbInput fullWidth fieldSize="15px" class="tinyInput" type="text"
+                placeholder="Nama Gudang">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-5">
+              <input #kodePegawai nbInput fullWidth type="text" fieldSize="small" placeholder="Kode Pegawai"
+                [ngModel]="valueKodePegawai" (ngModelChange)="onModelChangeKodePegawai($event)"
+                [nbAutocomplete]="autoKodePegawai" />
+              <nb-autocomplete #autoKodePegawai>
+                <nb-option *ngFor="let optionsKodePegawai of filteredNgModelOptionsKodePegawai$ | async"
+                  [value]="optionsKodePegawai">
+                  {{ optionsKodePegawai }}
+                </nb-option>
+              </nb-autocomplete>
+            </div>
+            <div class="col-lg-7">
+              <input #namaPegawai nbInput fullWidth fieldSize="15px" class="tinyInput" type="text"
+                placeholder="Nama Pegawai">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input #keterangan nbInput fullWidth fieldSize="15px" class="tinyInput" type="text"
+                placeholder="Keterangan">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nb-card-header>
+
+  <nb-card-body>
+    <nb-card>
+      <nb-card-body>
+        <ng2-smart-table [settings]="settings" [source]="source" (createConfirm)="onCreateConfirm($event)"
+          (editConfirm)="onEditConfirm($event)" (deleteConfirm)="onDeleteConfirm($event)">
+        </ng2-smart-table>
+      </nb-card-body>
+    </nb-card>
+  </nb-card-body>
+
+  <nb-card-footer>
+    <div class="box">
+      <div class="row">
+        <div class="col-lg-12">
+          <input #jumlahTotal nbInput fullWidth fieldSize="15px" class="tinyInput" type="number" status="primary"
+            placeholder="Jumlah Total">
+        </div>
+      </div>
+    </div>
+    <button class="cancel" nbButton status="danger" (click)="cancel()">Cancel</button>
+    <button nbButton status="success" (click)="submit(noTransaksi, tanggalTransaksi, kodeGudang, namaGudang,
+    kodePegawai, namaPegawai, keterangan, jumlahTotal)">Submit</button>
+  </nb-card-footer>
+</nb-card>

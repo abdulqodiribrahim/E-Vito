@@ -1,0 +1,55 @@
+@import "../../../../@theme/styles/themes";
+
+@include nb-install-component() {
+  input {
+    width: 100%;
+  }
+
+  .cancel {
+    margin-right: 1rem;
+  }
+}
+
+.file-input {
+  display: none;
+}
+
+.imageSize {
+  width: 200px;
+  height: 200px;
+}
+
+.fullwidth {
+  width: 100%;
+}
+
+.fullheight {
+  height: 100%;
+}
+
+.xc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vcs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hcs {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.hrs {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.marginHeaderBarang {
+  margin-bottom: 1%;
+}

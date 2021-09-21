@@ -1,0 +1,151 @@
+<nb-card size="giant">
+  <nb-card-header>Enter Retur Pembelian
+    <div class="box">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="col-lg-12">
+              <input #noTransaksi nbInput fullWidth fieldSize="15px" class="tinyInput" type="text"
+                placeholder="No.Transaksi">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input #tanggal nbInput fullWidth fieldSize="15px" class="tinyInput" [nbDatepicker]="tanggalDate"
+                placeholder="Tanggal">
+              <nb-datepicker #tanggalDate></nb-datepicker>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input #kodeSupplier nbInput fullWidth type="text" fieldSize="small" placeholder="Kode Supplier"
+                [ngModel]="valueKodeSupplier" (ngModelChange)="onModelChangeKodeSupplier($event)"
+                [nbAutocomplete]="autoKodeSupplier" />
+              <nb-autocomplete #autoKodeSupplier>
+                <nb-option *ngFor="let optionsKodeSupplier of filteredNgModelOptionsKodeSupplier$ | async"
+                  [value]="optionsKodeSupplier">
+                  {{ optionsKodeSupplier }}
+                </nb-option>
+              </nb-autocomplete>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="col-lg-12">
+              <input #namaSupplier nbInput fullWidth fieldSize="15px" class="tinyInput" type="text"
+                placeholder="Nama Supplier">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-1" style="align-self: center;">
+              <nb-checkbox (checkedChange)="toggle($event)"></nb-checkbox>
+            </div>
+            <div class="col-lg-11">
+              <input #noPembelian nbInput fullWidth type="text" fieldSize="small" placeholder="No.Pembelian"
+                [ngModel]="valueNoPembelian" (ngModelChange)="onModelChangeNoPembelian($event)"
+                [nbAutocomplete]="autoNoPembelian" />
+              <nb-autocomplete #autoNoPembelian>
+                <nb-option *ngFor="let optionsNoPembelian of filteredNgModelOptionsNoPembelian$ | async"
+                  [value]="optionsNoPembelian">
+                  {{ optionsNoPembelian }}
+                </nb-option>
+              </nb-autocomplete>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-5">
+              <input #kodeGudang nbInput fullWidth type="text" fieldSize="small" placeholder="Kode Gudang"
+                [ngModel]="valueKodeGudang" (ngModelChange)="onModelChangeKodeGudang($event)"
+                [nbAutocomplete]="autoKodeGudang" />
+              <nb-autocomplete #autoKodeGudang>
+                <nb-option *ngFor="let optionsKodeGudang of filteredNgModelOptionsKodeGudang$ | async"
+                  [value]="optionsKodeGudang">
+                  {{ optionsKodeGudang }}
+                </nb-option>
+              </nb-autocomplete>
+            </div>
+            <div class="col-lg-7">
+              <input #namaGudang nbInput fullWidth fieldSize="15px" class="tinyInput" type="text"
+                placeholder="Nama Gudang">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input #noDokument nbInput fullWidth fieldSize="15px" class="tinyInput" type="text"
+                placeholder="No.Dokumen">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="box">
+      <ng2-smart-table [settings]="settings" [source]="source"
+        (createConfirm)="onCreateConfirm($event, noTransaksi, noPembelian, tanggal, kodeGudang)"
+        (editConfirm)="onEditConfirm($event)" (deleteConfirm)="onDeleteConfirm($event)">
+      </ng2-smart-table>
+    </div>
+
+
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="box">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="row">
+            <div class="col-lg-12">
+              <input #subTotalRp nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                placeholder="Sub Total (Rp)">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-5">
+              <input #discountPercent nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                placeholder="Discount (%)">
+            </div>
+            <div class="col-lg-7">
+              <input #discountRp nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                placeholder="Discount (Rp)">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="row">
+            <div class="col-lg-12">
+              <input #biayaLain nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                placeholder="Biaya Lain">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input #hargaBersih nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                placeholder="Harga Bersih">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="row">
+            <div class="col-lg-12">
+              <input #bayar nbInput fullWidth fieldSize="15px" class="tinyInput" type="number" placeholder="Bayar">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input #kembali nbInput fullWidth fieldSize="15px" class="tinyInput" type="number" placeholder="Kembali">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <button class="cancel" nbButton status="danger" (click)="cancel()">Cancel</button>
+    <button nbButton status="success"
+      (click)="submit(noTransaksi, tanggal, kodeSupplier, namaSupplier, noPembelian, kodeGudang, namaGudang, noDokument, subTotalRp, discountPercent, discountRp, biayaLain, hargaBersih, bayar, kembali)">Submit</button>
+  </nb-card-footer>
+</nb-card>

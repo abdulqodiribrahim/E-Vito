@@ -1,0 +1,17 @@
+@import '../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  nb-card {
+    transform: translate3d(0, 0, 0);
+  }
+
+  .evito-button {
+    background: linear-gradient(90deg, #3887fe 0%, #20135c 100%);
+    border-color: unset;
+  }
+  .evito-text {
+    color: #ffffff;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}

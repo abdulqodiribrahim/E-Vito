@@ -1,0 +1,282 @@
+<nb-card size="giant">
+  <nb-card-header>Enter Penjualan
+    <div class="box">
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="row">
+            <div class="col-lg-12">
+              <input #noTransaksi nbInput fullWidth fieldSize="15px" class="tinyInput" type="text"
+                placeholder="No.Transaksi">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input #tanggalTransaksi nbInput fullWidth fieldSize="15px" class="tinyInput"
+                [nbDatepicker]="tanggalTransaksiDate" placeholder="Tanggal Transaksi">
+              <nb-datepicker #tanggalTransaksiDate></nb-datepicker>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input #noDokument nbInput fullWidth fieldSize="15px" class="tinyInput" type="text"
+                placeholder="No.Dokumen">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input #jenisNota nbInput fullWidth type="text" fieldSize="small" placeholder="Jenis Nota"
+                [ngModel]="valueJenisNota" (ngModelChange)="onModelChangeJenisNota($event)"
+                [nbAutocomplete]="autoJenisNota" />
+              <nb-autocomplete #autoJenisNota>
+                <nb-option *ngFor="let optionsJenisNota of filteredNgModelOptionsJenisNota$ | async"
+                  [value]="optionsJenisNota">
+                  {{ optionsJenisNota }}
+                </nb-option>
+              </nb-autocomplete>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input #jatuhTempo nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                placeholder="Jatuh Tempo (Hari)">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input #tanggalJatuhTempo nbInput fullWidth fieldSize="15px" class="tinyInput"
+                [nbDatepicker]="tanggalJatuhTempoDate" placeholder="Tanggal Jatuh Tempo">
+              <nb-datepicker #tanggalJatuhTempoDate></nb-datepicker>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="row">
+            <div class="col-lg-5">
+              <input #kodeGudang nbInput fullWidth type="text" fieldSize="small" placeholder="Kode Gudang"
+                [ngModel]="valueKodeGudang" (ngModelChange)="onModelChangeKodeGudang($event)"
+                [nbAutocomplete]="autoKodeGudang" />
+              <nb-autocomplete #autoKodeGudang>
+                <nb-option *ngFor="let optionsKodeGudang of filteredNgModelOptionsKodeGudang$ | async"
+                  [value]="optionsKodeGudang">
+                  {{ optionsKodeGudang }}
+                </nb-option>
+              </nb-autocomplete>
+            </div>
+            <div class="col-lg-7">
+              <input #namaGudang nbInput fullWidth fieldSize="15px" class="tinyInput" type="text"
+                placeholder="Nama Gudang">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-5">
+              <input #kodeSales nbInput fullWidth type="text" fieldSize="small" placeholder="Kode Sales"
+                [ngModel]="valueKodeSales" (ngModelChange)="onModelChangeKodeSales($event)"
+                [nbAutocomplete]="autoKodeSales" />
+              <nb-autocomplete #autoKodeSales>
+                <nb-option *ngFor="let optionsKodeSales of filteredNgModelOptionsKodeSales$ | async"
+                  [value]="optionsKodeSales">
+                  {{ optionsKodeSales }}
+                </nb-option>
+              </nb-autocomplete>
+            </div>
+            <div class="col-lg-7">
+              <input #namaSales nbInput fullWidth fieldSize="15px" class="tinyInput" type="text"
+                placeholder="Nama Sales">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input #area nbInput fullWidth type="text" fieldSize="small" placeholder="Area"
+                [ngModel]="valueArea" (ngModelChange)="onModelChangeArea($event)"
+                [nbAutocomplete]="autoArea" />
+              <nb-autocomplete #autoArea>
+                <nb-option *ngFor="let optionsArea of filteredNgModelOptionsArea$ | async"
+                  [value]="optionsArea">
+                  {{ optionsArea }}
+                </nb-option>
+              </nb-autocomplete>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-5">
+              <input #kodeCustomer nbInput fullWidth type="text" fieldSize="small" placeholder="Kode Customer"
+                [ngModel]="valueKodeCustomer" (ngModelChange)="onModelChangeKodeCustomer($event)"
+                [nbAutocomplete]="autoKodeCustomer" />
+              <nb-autocomplete #autoKodeCustomer>
+                <nb-option *ngFor="let optionsKodeCustomer of filteredNgModelOptionsKodeCustomer$ | async"
+                  [value]="optionsKodeCustomer">
+                  {{ optionsKodeCustomer }}
+                </nb-option>
+              </nb-autocomplete>
+            </div>
+            <div class="col-lg-7">
+              <input #status nbInput fullWidth fieldSize="15px" class="tinyInput" type="text"
+                placeholder="Status">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input #namaCustomer nbInput fullWidth fieldSize="15px" class="tinyInput" type="text"
+                placeholder="Nama Customer">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input #alamatCustomer nbInput fullWidth fieldSize="15px" class="tinyInput" type="text"
+                placeholder="Alamat Customer">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-2">
+          <img class="imageSize" [src]="imageUrl" />
+        </div>
+      </div>
+
+    </div>
+  </nb-card-header>
+
+  <nb-card-body>
+    <div class="box">
+      <ng2-smart-table [settings]="settings" [source]="source"
+        (createConfirm)="onCreateConfirm($event)"
+        (editConfirm)="onEditConfirm($event)" (deleteConfirm)="onDeleteConfirm($event)">
+      </ng2-smart-table>
+    </div>
+
+    <div class="box">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="col-lg-12">
+              <input #noCek nbInput fullWidth fieldSize="15px" class="tinyInput" type="text"
+                placeholder="No.Cek">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input #namaBank nbInput fullWidth fieldSize="15px" class="tinyInput" type="text"
+                placeholder="Nama Bank">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input #atasNama nbInput fullWidth fieldSize="15px" class="tinyInput" type="text"
+                placeholder="Atas Nama">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="col-lg-12">
+              <input #tanggalCek nbInput fullWidth fieldSize="15px" class="tinyInput" [nbDatepicker]="tanggalCekDate"
+                placeholder="Tanggal Cek">
+              <nb-datepicker #tanggalCekDate></nb-datepicker>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input #tanggalCair nbInput fullWidth fieldSize="15px" class="tinyInput" [nbDatepicker]="tanggalCairDate"
+                placeholder="Tanggal Cair">
+              <nb-datepicker #tanggalCairDate></nb-datepicker>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </nb-card-body>
+
+  <nb-card-footer>
+    <div class="box">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="row">
+            <div class="col-lg-12">
+              <input #subTotalRp nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                placeholder="Sub Total (Rp)" disabled>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input #discountPercent nbInput fullWidth fieldSize="15px" class="tinyInput"
+                type="number" placeholder="Discount (%)">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input #jumlahDiscRp nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                placeholder="Jumlah Disc (Rp)">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input #biayaLainRp nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                placeholder="Biaya lain (Rp)">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="row">
+            <div class="col-lg-12 tinyInput">
+              Pembayaran :
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input #cashRp nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                placeholder="Cash (Rp)">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input #transferRp nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                placeholder="Transfer (Rp)">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input #cekRp nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                placeholder="Cek (Rp)">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="row">
+            <div class="col-lg-12">
+              <input #hargaBersih nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                placeholder="Harga Bersih" disabled>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input #totalBayar nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                placeholder="Total Bayar" disabled>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input #kembali nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                placeholder="Kembali" disabled>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input #hutang nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                placeholder="Hutang" disabled>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <button class="cancel" nbButton status="danger" (click)="cancel()">Cancel</button>
+    <button nbButton status="success" (click)="submit(
+          noTransaksi)">Submit</button>
+  </nb-card-footer>
+</nb-card>

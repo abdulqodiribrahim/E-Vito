@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="col-md-2 offset-md-4">
+    <div class="form-group">
+      <button class="evito-button" fullWidth nbButton shape="round" size="small"
+      (click)="onCreateConfirm()">
+        <a class="evito-text">Tambah</a>
+      </button>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <button class="evito-button" fullWidth nbButton shape="round" size="small">
+        <a class="evito-text">Edit</a>
+      </button>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <button class="evito-button" fullWidth nbButton shape="round" size="small">
+        <a class="evito-text">Hapus</a>
+      </button>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <button class="evito-button" fullWidth nbButton shape="round" size="small">
+        <a class="evito-text">Preview</a>
+      </button>
+    </div>
+  </div>
+</div>
+
+<nb-card>
+  <nb-card-header>
+    <div class="row">
+      <div class="col-md-2">
+        <div class="form-group">
+          Tabel Finishing
+        </div>
+      </div>
+      <div class="col-md-2 offset-md-8">
+        <div class="form-group">
+          <button nbButton outline status="primary" fullWidth shape="round" size="small" (click)="onShowAll()">
+            Show All
+          </button>
+        </div>
+      </div>
+    </div>
+  </nb-card-header>
+
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="source"
+      (editConfirm)="onEditConfirm($event)" (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>
+<nb-card>
+  <nb-card-header>
+    Tabel Detail Finishing
+  </nb-card-header>
+
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings2" [source]="source2"
+      (editConfirm)="onEditConfirm2($event)" (deleteConfirm)="onDeleteConfirm2($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>
+
+<nb-card>
+  <nb-card-header>
+    Tabel Detail Finishing Mix
+  </nb-card-header>
+
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings3" [source]="source3"
+      (editConfirm)="onEditConfirm3($event)" (deleteConfirm)="onDeleteConfirm3($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,92 @@
+<nb-card size="giant">
+  <nb-card-header>Enter Supplier</nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input nbInput fullWidth fieldSize="small" type="text" placeholder="Kode Supplier" #kode_sup>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input nbInput fullWidth fieldSize="small" type="text" placeholder="Kode Supplier" #nama_sup>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input nbInput fullWidth fieldSize="small" type="text" placeholder="Contact Person" #kontak_person>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <textarea nbInput fullWidth fieldSize="small" type="text" placeholder="Alamat" #alamat></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input nbInput fullWidth fieldSize="small" type="text" placeholder="Kota" #kota>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input nbInput fullWidth fieldSize="small" type="number" placeholder="Kode Pos" #kode_pos>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input nbInput fullWidth fieldSize="small" type="email" placeholder="Email" #email>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input nbInput fullWidth fieldSize="small" type="text" placeholder="Telp" #telp>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input nbInput fullWidth fieldSize="small" type="text" placeholder="Fax" #fax>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input nbInput fullWidth fieldSize="small" type="text" placeholder="NPWP" #npwp>
+        </div>
+      </div>
+    </div>
+
+  </nb-card-body>
+  <nb-card-footer>
+    <button class="cancel" nbButton status="danger" (click)="cancel()">Cancel</button>
+    <button nbButton status="success"
+    (click)="submit(
+    kode_sup.value,
+    nama_sup.value,
+    kontak_person.value,
+    alamat.value,
+    kota.value,
+    kode_pos.value,
+    email.value,
+    telp.value,
+    fax.value,
+    npwp.value)">Submit</button>
+
+  </nb-card-footer>
+</nb-card>

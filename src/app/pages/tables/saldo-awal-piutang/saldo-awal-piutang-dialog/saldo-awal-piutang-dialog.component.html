@@ -1,0 +1,80 @@
+<nb-card size="giant">
+  <nb-card-header>Enter Saldo Awal Piutang</nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input #tanggal nbInput fullWidth fieldSize="small" [nbDatepicker]="tanggalDate" placeholder="Transaksi">
+          <nb-datepicker #tanggalDate></nb-datepicker>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input #noTransaksi nbInput fullWidth fieldSize="small" type="text" placeholder="No.Transaksi" value={{notrans}}>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input #kodeCustomer nbInput fullWidth type="text" fieldSize="small" placeholder="Kode Customer"
+            [ngModel]="valueKodeCustomer" (ngModelChange)="onModelChangeKodeCustomer($event)"
+            [nbAutocomplete]="autoKodeCustomer" />
+          <nb-autocomplete #autoKodeCustomer>
+            <nb-option *ngFor="let optionsKodeCustomer of filteredNgModelOptionsKodeCustomer$ | async"
+              [value]="optionsKodeCustomer">
+              {{ optionsKodeCustomer }}
+            </nb-option>
+          </nb-autocomplete>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input #namaCustomer nbInput fullWidth fieldSize="small" type="text" placeholder="Nama Customer">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-5">
+        <div class="form-group">
+          <input #saldoAkhir nbInput fullWidth fieldSize="small" type="number" placeholder="Saldo Awal">
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="form-group">
+          <input #saldoAwal nbInput fullWidth fieldSize="small" type="number" placeholder="Saldo Akhir">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input #disesuaikanPlus nbInput fullWidth fieldSize="small" type="text" placeholder="Disesuaikan (+)">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input #disesuaikanMinus nbInput fullWidth fieldSize="small" type="text" placeholder="Disesuaikan (-)">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <textarea #keterangan nbInput fullWidth fieldSize="small" type="text" placeholder="Keterangan"></textarea>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <button class="cancel" nbButton status="danger" (click)="cancel()">Cancel</button>
+    <button nbButton status="success" (click)="submit(tanggal, noTransaksi, kodeCustomer, namaCustomer,
+    saldoAkhir, saldoAwal, disesuaikanPlus, disesuaikanMinus, keterangan)">Submit</button>
+  </nb-card-footer>
+</nb-card>

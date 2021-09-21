@@ -1,0 +1,16 @@
+@import "../../../../@theme/styles/themes";
+
+@include nb-install-component() {
+  input {
+    width: 100%;
+  }
+
+  .cancel {
+    margin-right: 1rem;
+  }
+}
+
+.imageSize {
+  width: 150px;
+  height: 150px;
+}

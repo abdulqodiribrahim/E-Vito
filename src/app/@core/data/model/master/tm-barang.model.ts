@@ -1,0 +1,32 @@
+export class TmBarang {
+  kode_brg: string;
+  nama_brg: string;
+  merk: string;
+  type: string;
+  golongan: string;
+  satuan: string;
+  kode_sup: string;
+  nama_sup: string;
+  harga_beli: number;
+  hj_1: number;
+  hj_2: number;
+  hj_3: number;
+  hj_4: number;
+  stock_max: number;
+  stock_min: number;
+  ket: string;
+  photo: string;
+  komp: string;
+  user_entry: string;
+  tgl_entry: string;
+  f_stock: boolean;
+  hrg_cut: number;
+  hrg_bordir: number;
+  hrg_jahit: number;
+  hrg_finis: number;
+  flag_bordir: boolean;
+  percent_hj_1: number;
+  percent_hj_2: number;
+  percent_hj_3: number;
+  percent_hj_4: number;
+}

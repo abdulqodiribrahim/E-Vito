@@ -1,0 +1,16 @@
+<nb-card fullscreen>
+  <nb-card-header>Enter Satuan</nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input #satuan nbInput fullWidth fieldSize="small" type="text" placeholder="Satuan">
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <button class="cancel" nbButton status="danger" (click)="cancel()">Cancel</button>
+    <button nbButton status="success" (click)="submit(satuan.value)">Submit</button>
+  </nb-card-footer>
+</nb-card>

@@ -1,0 +1,53 @@
+<nb-card fullscreen>
+  <nb-card-header>Enter Saldo Kas</nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input #tanggal nbInput fullWidth fieldSize="small" [nbDatepicker]="tanggalDate" placeholder="Tanggal">
+          <nb-datepicker #tanggalDate></nb-datepicker>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input #noTransaksi nbInput fullWidth fieldSize="small" type="text" placeholder="No.Transaksi">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input #jenis nbInput fullWidth type="text" fieldSize="small" placeholder="Jenis"
+            [ngModel]="valueJenis" (ngModelChange)="onModelChangeJenis($event)"
+            [nbAutocomplete]="autoJenis" />
+          <nb-autocomplete #autoJenis>
+            <nb-option *ngFor="let optionsJenis of filteredNgModelOptionsJenis$ | async"
+              [value]="optionsJenis">
+              {{ optionsJenis }}
+            </nb-option>
+          </nb-autocomplete>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input #jumlah nbInput fullWidth fieldSize="small" type="number" placeholder="Jumlah">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <textarea #keterangan nbInput fullWidth fieldSize="small" type="text" placeholder="Keterangan"></textarea>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <button class="cancel" nbButton status="danger" (click)="cancel()">Cancel</button>
+    <button nbButton status="success" (click)="submit(noTransaksi.value, tanggal.value, jenis.value, jumlah.value, keterangan.value)">Submit</button>
+  </nb-card-footer>
+</nb-card>

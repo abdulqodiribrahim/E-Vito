@@ -1,0 +1,248 @@
+<nb-card size="giant">
+  <nb-card-header>Enter Barang</nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="box">
+          <header class="marginHeaderBarang">Group</header>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6">
+                  <input #kodeBarang nbInput fullWidth fieldSize="15px" class="tinyInput" id="area" type="text"
+                    placeholder="Kode Barang">
+                </div>
+                <div class="col-lg-6">
+                  <nb-checkbox class="tinyInput" (checkedChange)="toggle($event)">Stock</nb-checkbox>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <input #namaBarang nbInput fullWidth fieldSize="15px" class="tinyInput" type="text"
+                    placeholder="Nama Barang">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <input #merk nbInput fullWidth fieldSize="15px" class="tinyInput" type="text" placeholder="Merk">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <input #type nbInput fullWidth fieldSize="15px" class="tinyInput" type="text" placeholder="Type">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <input #golongan nbInput fullWidth fieldSize="15px" class="tinyInput" type="text"
+                    placeholder="Golongan" (click)="onClickGolongan()" [ngModel]="valueGolongan"
+                    (ngModelChange)="onModelChangeGolongan($event)" [nbAutocomplete]="autoGolongan" />
+                  <nb-autocomplete #autoGolongan>
+                    <nb-option *ngFor="let optionsGolongan of filteredNgModelOptionsGolongan$ | async"
+                      [value]="optionsGolongan">
+                      {{ optionsGolongan }}
+                    </nb-option>
+                  </nb-autocomplete>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <input #satuan nbInput fullWidth fieldSize="15px" class="tinyInput" type="text" placeholder="Satuan"
+                    (click)="onClickSatuan()" [ngModel]="valueSatuan" (ngModelChange)="onModelChangeSatuan($event)"
+                    [nbAutocomplete]="autoSatuan" />
+                  <nb-autocomplete #autoSatuan>
+                    <nb-option *ngFor="let optionsSatuan of filteredNgModelOptionsSatuan$ | async"
+                      [value]="optionsSatuan">
+                      {{ optionsSatuan }}
+                    </nb-option>
+                  </nb-autocomplete>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="box">
+          <header class="marginHeaderBarang">Harga</header>
+          <div class="row">
+            <div class="col-lg-5">
+              <input #kodeSupplier nbInput fullWidth fieldSize="15px" class="tinyInput" type="text"
+                placeholder="Kode Supplier" (click)="onClickSupplier()" [ngModel]="valueKodeSupplier"
+                (ngModelChange)="onModelChangeKodeSupplier($event)" [nbAutocomplete]="autoKodeSupplier" />
+              <nb-autocomplete #autoKodeSupplier>
+                <nb-option *ngFor="let optionsKodeSupplier of filteredNgModelOptionsKodeSupplier$ | async"
+                  [value]="optionsKodeSupplier">
+                  {{ optionsKodeSupplier }}
+                </nb-option>
+              </nb-autocomplete>
+            </div>
+            <div class="col-lg-7">
+              <input #namaSupplier [formControl]="namaSup" nbInput fullWidth fieldSize="15px" class="tinyInput"
+                type="text" placeholder="Nama Supplier">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input #hargaBeli nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                placeholder="Harga Beli">
+            </div>
+          </div>
+        </div>
+
+        <div class="box">
+          <header class="marginHeaderBarang">Harga Jual</header>
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="row">
+                <div class="col-lg-12">
+                  <input #hj1Percent nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                    placeholder="Harga Jual 1 (%)">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <input #hj2Percent nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                    placeholder="Harga Jual 2 (%)">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <input #hj3Percent nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                    placeholder="Harga Jual 3 (%)">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <input #hj4Percent nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                    placeholder="Harga Jual 4 (%)">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4">
+              <div class="row">
+                <div class="col-lg-12">
+                  <input #hj1Rp nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                    placeholder="Harga Jual 1 (Rp)">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <input #hj2Rp nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                    placeholder="Harga Jual 2 (Rp)">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <input #hj3Rp nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                    placeholder="Harga Jual 3 (Rp)">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <input #hj4Rp nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                    placeholder="Harga Jual 4 (Rp)">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4">
+              <div class="row">
+                <div class="col-lg-12">
+                  <input #hargaCutting nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                    placeholder="Harga Cutting">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <input #hargaBordir nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                    placeholder="Harga Bordir">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <input #hargaJahit nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                    placeholder="Harga Jahit">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <input #hargaFinishing nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                    placeholder="Harga Finishing">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="box">
+          <header class="marginHeaderBarang">Max/Min Stock</header>
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="row">
+                <div class="col-lg-12">
+                  <input #stockMax nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                    placeholder="Stock Max">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4">
+              <div class="row">
+                <div class="col-lg-12">
+                  <input #stockMin nbInput fullWidth fieldSize="15px" class="tinyInput" type="number"
+                    placeholder="Stock Min">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4">
+              <div class="row">
+                <div class="col-lg-12">
+                  <nb-checkbox (checkedChange)="toggle($event)">Status Bordir</nb-checkbox>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="box">
+          <header class="marginHeaderBarang">Gambar</header>
+          <div class="fullwidth xc marginHeaderBarang">
+            <div class="hcs">
+              <img class="imageSize" [src]="imageUrl" />
+            </div>
+          </div>
+          <footer>
+            <div class="fullwidth xc">
+              <div class="hrs">
+                <input style="display: none" type="file" class="file-upload" (change)="onFileChanged($event)"
+                  #fileInput>
+
+                <button nbButton size="small" class="cancel" status="info" (click)="fileInput.click()">Submit</button>
+                <button nbButton size="small" status="primary" (click)="onUpload()">Upload</button>
+              </div>
+            </div>
+
+          </footer>
+        </div>
+        <div class="box">
+          <header class="marginHeaderBarang">Keterangan</header>
+          <div class="row">
+            <div class="col-lg-12">
+              <textarea nbInput fullWidth fieldSize="15px" class="tinyInput" type="text" placeholder="Keterangan"
+                #keterangan></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </nb-card-body>
+  <nb-card-footer>
+    <button class="cancel" nbButton status="danger" (click)="cancel()">Cancel</button>
+    <button nbButton status="success" (click)="submit('dsa')">Submit</button>
+  </nb-card-footer>
+</nb-card>
